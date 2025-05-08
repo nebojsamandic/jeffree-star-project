@@ -9,47 +9,68 @@
   
     <main>
       <section class="admin-form">
-        <h2>Submit a New Product</h2>
-        <form id="product-form">
-          <label>
-            Product Name:
-            <input type="text" name="name" required />
-          </label>
-      
-          <label>
-            Brand:
-            <input type="text" name="brand" required />
-          </label>
-      
-          <label>
-            Image URL:
-            <input type="url" name="imageUrl" required />
-          </label>
-      
-          <label>
-            Description:
-            <textarea name="description" rows="4" required></textarea>
-          </label>
-      
-          <label>
-            <input type="checkbox" name="approved" />
-            Approved by Jeffree Star
-          </label>
-      
-          <label>
-            <input type="checkbox" name="recommended" />
-            Recommended for Homepage
-          </label>
-      
-          <button type="submit">Submit Product</button>
-          <div id="form-message"></div>
-        </form>
-        <section class="admin-products">
-          <h2>All Products</h2>
-          <div class="product-grid" id="admin-product-grid"></div>
-        </section>        
+    
+        <details>
+          <summary>➕ Submit a New Product</summary>
+          <form id="product-form">
+            <label>
+              Product Name:
+              <input type="text" name="name" required />
+            </label>
+    
+            <label>
+              Brand:
+              <input type="text" name="brand" required />
+            </label>
+    
+            <label>
+              Image URL:
+              <input type="url" name="imageUrl" required />
+            </label>
+    
+            <label>
+              Description:
+              <textarea name="description" rows="4" required></textarea>
+            </label>
+    
+            <label class="checkbox-group">
+              <input type="checkbox" name="approved" />
+              <span>Approved by Jeffree Star</span>
+            </label>
+            
+            <label class="checkbox-group">
+              <input type="checkbox" name="recommended" />
+              <span>Recommended for Homepage</span>
+            </label>
+            
+    
+            <button type="submit">Submit Product</button>
+            <div id="form-message"></div>
+          </form>
+        </details>
+    
+        <details>
+          <summary>🔍 Search Products</summary>
+          <div class="search-box">
+            <input
+              type="text"
+              id="admin-search"
+              placeholder="Search by product name, brand, or description..."
+            />
+          </div>
+          <div class="product-grid" id="search-product-grid"></div>
+          
+        </details>
+    
+        <details>
+          <summary>📦 Highlighted Products</summary>
+          <section class="admin-products">
+            <div class="product-grid" id="admin-product-grid"></div>
+          </section>
+        </details>
+    
       </section>
-          </main>
+    </main>
           <script src="../scripts/admin.js"></script>
     <script src="../scripts/headerLoader.js"></script>
   </body>
