@@ -1,0 +1,56 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is it Jeffree Star Approved?</title>
+  <link rel="stylesheet" href="../blocks/page/index.css" />
+</head>
+<body>
+    <div id="header-container"></div>
+  
+    <main>
+      <section class="admin-form">
+        <h2>Submit a New Product</h2>
+        <form id="product-form">
+          <label>
+            Product Name:
+            <input type="text" name="name" required />
+          </label>
+      
+          <label>
+            Brand:
+            <input type="text" name="brand" required />
+          </label>
+      
+          <label>
+            Image URL:
+            <input type="url" name="imageUrl" required />
+          </label>
+      
+          <label>
+            Description:
+            <textarea name="description" rows="4" required></textarea>
+          </label>
+      
+          <label>
+            <input type="checkbox" name="approved" />
+            Approved by Jeffree Star
+          </label>
+      
+          <label>
+            <input type="checkbox" name="recommended" />
+            Recommended for Homepage
+          </label>
+      
+          <button type="submit">Submit Product</button>
+          <div id="form-message"></div>
+        </form>
+        <section class="admin-products">
+          <h2>All Products</h2>
+          <div class="product-grid" id="admin-product-grid"></div>
+        </section>        
+      </section>
+          </main>
+          <script src="../scripts/admin.js"></script>
+    <script src="../scripts/headerLoader.js"></script>
+  </body>
+  

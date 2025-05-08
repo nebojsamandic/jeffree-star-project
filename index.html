@@ -15,7 +15,7 @@
                 <a href="./pages/categories.html" class="nav-btn">Categories</a>
                 <a href="./pages/latest.html" class="nav-btn">Latest Approvals</a>
                 <a href="./pages/about.html" class="nav-btn">About</a>
-                <a href="./pages/contact.html" class="nav-btn">Contact</a>
+                <a href="./pages/admin.html" class="nav-btn">Admin</a>
         </nav>
       </header>
       
@@ -35,17 +35,13 @@
     <select>
       <option>Brand</option>
     </select>
-    <input type="text" placeholder="Search a product..." />
+    <input type="text" id="search-input" placeholder="Search a product..." />
   </section>
 
-  <section class="products">
-    <div class="product-card">
-      <div class="product-image"></div>
-      <p><strong>Product Name</strong></p>
-      <p>✔ Approved by Jeffree Star</p>
-      <p class="quote">Small review or quote</p>
-    </div>
-  </section>
+  <section class="products" id="recommended-products">
+    <h2>Recommended This Week</h2>
+    <div class="product-grid" id="product-grid"></div>
+  </section>  
   <script src="./scripts/index.js"></script>
   <script src="./scripts/app.js"></script>
 </body>
