@@ -1,0 +1,23 @@
+# Ignore system folders and restricted directories
+AppData/
+Documents/
+Cookies/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+Application Data/
+
+# Ignore Fly.io socket and agent folder
+.fly/fly-agent.sock
+.fly/agent-logs/
+
+# Optional: Ignore build files, logs, and OS-specific files
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
