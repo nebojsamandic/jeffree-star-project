@@ -1,1 +1,42 @@
 .vercel
+# Ignore system stuff
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.log
+*.sock
+*.tmp
+*.swp
+
+# Ignore Fly.io socket and logs
+.fly/fly-agent.sock
+.fly/agent-logs/
+.fly/*.log
+
+# Node.js
+node_modules/
+.env
+
+# OS junk
+AppData/
+Local Settings/
+My Documents/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+Cookies/
+Documents/My Music/
+Documents/My Pictures/
+Documents/My Videos/
+*.bak
+*.tmp
+
+# VSCode
+.vscode/
+
+# Others
+*.pid
+*.seed
+*.sqlite
+*.db

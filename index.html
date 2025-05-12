@@ -31,19 +31,52 @@
   <input type="text" id="search-input" placeholder="Search a product..." />
 
   <section class="products" id="recommended-products">
-    <h2 id="product-section-title">Recommended This Week</h2>
+    <h2 id="product-section-title"></h2>
     <div class="product-grid" id="product-grid"></div>
   </section>
   
 <div id="product-modal" class="modal hidden">
   <div class="modal-content">
     <span class="modal-close" id="modal-close">&times;</span>
-    <img id="modal-image" src="" alt="Product image" />
-    <h2 id="modal-name"></h2>
-    <p><strong>Brand:</strong> <span id="modal-brand"></span></p>
-    <p><strong>Description:</strong> <span id="modal-description"></span></p>
+
+    <!-- Product Image -->
+    <img id="modal-image" class="modal-img" src="" alt="Product image" />
+
+    <!-- Price -->
+    <div id="modal-price" class="modal-price"></div>
+
+    <!-- Product Info Section (Name, Brand, Approved) -->
+    <div class="modal-info">
+      <h2 id="modal-name"></h2>
+      <p><span>Brand:</span> <span id="modal-brand"></span></p>
+      <p class="approved"><span>Jeffree Star Approved:</span> <span id="modal-approved"></span></p>
+    </div>
+
+    <!-- Full Description Section -->
+    <div class="modal-description">
+      <p><span>Description:</span> <span id="modal-description"></span></p>
+    </div>
+
+    <!-- Optional Info Section (Collapsed by default) -->
+    <div id="modal-optional-info" class="optional-info">
+      <p><span>Category:</span> <span id="modal-category"></span></p>
+      <p><span>Sub-category:</span> <span id="modal-subcategory"></span></p>
+      <p><span>Release Date:</span> <span id="modal-release-date"></span></p>
+      <p><span>Finish:</span> <span id="modal-finish"></span></p>
+      <p><span>Coverage:</span> <span id="modal-coverage"></span></p>
+      <p><span>Formula:</span> <span id="modal-formula"></span></p>
+      <p><span>SPF:</span> <span id="modal-spf"></span></p>
+      <p><span>Vegan:</span> <span id="modal-vegan"></span></p>
+      <p><span>Shades:</span> <span id="modal-shades"></span></p>
+      <p><span>Ingredients:</span> <span id="modal-ingredients"></span></p>
+    </div>
+
+    <!-- Button to Expand Optional Info -->
+<button id="expand-info" class="expand-btn">Show More</button>
   </div>
 </div>
+
+
   <script src="./scripts/index.js"></script>
   <script src="./scripts/app.js"></script>
 </body>

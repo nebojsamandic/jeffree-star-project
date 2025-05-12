@@ -13,19 +13,55 @@ const modalName = document.getElementById("modal-name");
 const modalBrand = document.getElementById("modal-brand");
 const modalDescription = document.getElementById("modal-description");
 const modalClose = document.getElementById("modal-close");
+const expandBtn = document.getElementById('expand-info');
+const optionalInfo = document.getElementById('modal-optional-info');
 
+
+
+// Function to open modal with product data
 function openModal(product) {
-  modalImage.src = product.imageUrl;
-  modalName.textContent = product.name;
-  modalBrand.textContent = product.brand;
-  modalDescription.textContent = product.description || "No description yet.";
+  modalImage.src = product.image_url || "default-image.jpg";
+  modalName.textContent = product.name || "N/A";
+  modalBrand.textContent = product.brand || "N/A";
+  document.getElementById("modal-description").textContent = product.full_description || "No description available.";
+  document.getElementById("modal-approved").textContent = product.js_approved ? "✔ Yes" : "❌ No";
+
+  // Optional fields
+  document.getElementById("modal-category").textContent = product.category || "";
+  document.getElementById("modal-subcategory").textContent = product.sub_category || "";
+  document.getElementById("modal-release-date").textContent = product.release_date ? new Date(product.release_date).toLocaleDateString() : "";
+  document.getElementById("modal-finish").textContent = product.finish || "";
+  document.getElementById("modal-coverage").textContent = product.coverage || "";
+  document.getElementById("modal-formula").textContent = product.formula || "";
+  document.getElementById("modal-spf").textContent = product.spf || "";
+  document.getElementById("modal-vegan").textContent = product.vegan ? "Yes" : product.vegan === false ? "No" : "";
+  document.getElementById("modal-shades").textContent = product.shades?.join(', ') || "";
+  document.getElementById("modal-ingredients").textContent = product.ingredients?.join(', ') || "";
+
+  // Reset expandable section
+  optionalInfo.classList.remove("expand");
+  expandBtn.textContent = "Show More";
+
   modal.classList.remove("hidden");
 }
 
+
+
+
+
+// Close Modal
 function closeModal() {
   modal.classList.add("hidden");
 }
 
+// Expand/Collapse the optional info
+expandBtn.addEventListener('click', () => {
+  optionalInfo.classList.toggle('expand');
+  expandBtn.textContent = optionalInfo.classList.contains('expand') ? "Show Less" : "Show More";
+});
+
+
+// Close modal when clicking the close button or outside the modal
 modalClose.addEventListener("click", closeModal);
 window.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
@@ -33,6 +69,12 @@ window.addEventListener("click", (e) => {
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
+
+
+function closeModal() {
+  modal.classList.add("hidden");
+}
+
 
 // DOM references
 const productGrid = document.getElementById("product-grid");
@@ -46,24 +88,24 @@ function createProductCard(product) {
   const card = document.createElement("div");
   card.className = "product-card";
   card.innerHTML = `
-    <img src="${product.imageUrl}" alt="${product.name}" />
+    <img src="${product.image_url}" alt="${product.name}" />
     <p><strong>${product.name}</strong></p>
-    <p>${product.approved ? "✔ Approved" : "❌ Not Approved"}</p>
-    <p class="quote">${product.description || "No description yet."}</p>
+    <p>${product.js_approved ? "✔ JS Approved" : "❌ Not Approved"}</p>
+    <p class="quote">${product.bio_description || "No description yet."}</p>
   `;
 
   card.addEventListener("click", () => openModal(product));
   return card;
 }
 
-// Render recommended products
-function renderRecommended() {
-  sectionTitle.textContent = "Recommended This Week";
+// Render highlighted products
+function renderHighlighted() {
+  sectionTitle.textContent = "Highlighted Products";
   productGrid.innerHTML = "";
 
-  const recommended = allProducts.filter(p => p.recommended);
+  const highlighted = allProducts.filter(p => p.highlighted);
 
-  recommended.forEach(product => {
+  highlighted.forEach(product => {
     const card = createProductCard(product);
     productGrid.appendChild(card);
   });
@@ -74,17 +116,19 @@ searchInput.addEventListener("input", () => {
   const term = searchInput.value.toLowerCase().trim();
 
   if (term.length < 2) {
-    renderRecommended();
+    renderHighlighted();
     return;
   }
 
-  const regex = new RegExp(`\\b${term}\\b`, "i");
-
   const filtered = allProducts.filter(product => {
+    const name = product.name?.toLowerCase() || "";
+    const brand = product.brand?.toLowerCase() || "";
+    const desc = product.bio_description?.toLowerCase() || "";
+
     return (
-      regex.test(product.name || "") ||
-      regex.test(product.brand || "") ||
-      regex.test(product.description || "")
+      name.includes(term) ||
+      brand.includes(term) ||
+      desc.includes(term)
     );
   });
 
@@ -107,7 +151,7 @@ async function loadHomeProducts() {
   try {
     const res = await fetch("https://jeffree-api-sky.fly.dev/products");
     allProducts = await res.json();
-    renderRecommended();
+    renderHighlighted();
   } catch (err) {
     productGrid.innerHTML = "<p>Failed to load products.</p>";
     console.error(err);

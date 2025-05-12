@@ -12,43 +12,74 @@
     
         <details>
           <summary>➕ Submit a New Product</summary>
-          <form id="product-form">
-            <label>
-              Product Name:
-              <input type="text" name="name" required />
-            </label>
-    
-            <label>
-              Brand:
-              <input type="text" name="brand" required />
-            </label>
-    
-            <label>
-              Image URL:
-              <input type="url" name="imageUrl" required />
-            </label>
-    
-            <label>
-              Description:
-              <textarea name="description" rows="4" required></textarea>
-            </label>
-    
-            <label class="checkbox-group">
-              <input type="checkbox" name="approved" />
-              <span>Approved by Jeffree Star</span>
-            </label>
-            
-            <label class="checkbox-group">
-              <input type="checkbox" name="recommended" />
-              <span>Recommended for Homepage</span>
-            </label>
-            
-    
-            <button type="submit">Submit Product</button>
-            <div id="form-message"></div>
-          </form>
+<form id="product-form">
+  <div class="form-section">
+    <h4>Basic Info</h4>
+    <label>Product ID: <input type="text" name="id" required /></label>
+    <label>Product Name: <input type="text" name="name" required /></label>
+    <label>Brand: <input type="text" name="brand" required /></label>
+    <label>Image URL: <input type="url" name="image_url" required /></label>
+    <label>Release Date: <input type="date" name="release_date" required /></label>
+  </div>
+
+  <div class="form-section">
+    <h4>Classification</h4>
+    <label>Category: <input type="text" name="category" required /></label>
+    <label>Sub Category: <input type="text" name="sub_category" required /></label>
+  </div>
+
+  <div class="form-section">
+    <h4>Descriptions</h4>
+    <label>Bio Description:
+      <textarea name="bio_description" rows="2" required></textarea>
+    </label>
+    <label>Full Description:
+      <textarea name="full_description" rows="4" required></textarea>
+    </label>
+  </div>
+
+  <div class="form-section">
+    <h4>Pricing</h4>
+    <label>Price: <input type="number" step="0.01" name="price" required /></label>
+  </div>
+
+  <div class="form-section">
+    <h4>Attributes</h4>
+<label>Shades (comma-separated): <input type="text" name="shades" /></label>
+<label>Finish: <input type="text" name="finish" /></label>
+<label>Coverage: <input type="text" name="coverage" /></label>
+<label>Formula: <input type="text" name="formula" /></label>
+<label>SPF (optional): <input type="number" name="spf" /></label>
+  </div>
+
+  <div class="form-section">
+    <h4>Metadata</h4>
+<label>Ingredients (comma-separated): <input type="text" name="ingredients" /></label>
+<label>Tags (comma-separated): <input type="text" name="tags" /></label>
+  </div>
+
+  <div class="form-section">
+    <h4>Flags</h4>
+    <label class="checkbox-group">
+      <input type="checkbox" name="vegan" />
+      <span>Vegan</span>
+    </label>
+    <label class="checkbox-group">
+      <input type="checkbox" name="js_approved" />
+      <span>Approved by Jeffree Star</span>
+    </label>
+    <label class="checkbox-group">
+      <input type="checkbox" name="highlighted" />
+      <span>Show in Highlighted Products</span>
+    </label>
+  </div>
+
+  <button type="submit">Submit Product</button>
+  <div id="form-message"></div>
+</form>
+
+
         </details>
-    
         <details>
           <summary>🔍 Search Products</summary>
           <div class="search-box">
@@ -68,9 +99,40 @@
             <div class="product-grid" id="admin-product-grid"></div>
           </section>
         </details>
-    
       </section>
+          <!-- Edit Product Modal -->
+<div id="edit-modal-admin" class="modal-admin hidden">
+  <div class="modal-content-admin">
+    <span class="modal-close-admin" id="edit-modal-close-admin">&times;</span>
+    <form id="edit-product-form-admin">
+      <h3>Edit Product</h3>
+<input type="hidden" name="id" />
+      <label>Name: <input type="text" name="name" required /></label>
+      <label>Brand: <input type="text" name="brand" required /></label>
+      <label>Image URL: <input type="url" name="image_url" required /></label>
+      <label>Release Date: <input type="date" name="release_date" required /></label>
+      <label>Category: <input type="text" name="category" /></label>
+      <label>Sub Category: <input type="text" name="sub_category" /></label>
+      <label>Bio Description: <textarea name="bio_description" rows="2"></textarea></label>
+      <label>Full Description: <textarea name="full_description" rows="4"></textarea></label>
+      <label>Price: <input type="number" step="0.01" name="price" /></label>
+      <label>Shades: <input type="text" name="shades" /></label>
+      <label>Finish: <input type="text" name="finish" /></label>
+      <label>Coverage: <input type="text" name="coverage" /></label>
+      <label>Formula: <input type="text" name="formula" /></label>
+      <label>SPF: <input type="number" name="spf" /></label>
+      <label>Ingredients: <input type="text" name="ingredients" /></label>
+      <label>Tags: <input type="text" name="tags" /></label>
+      <label><input type="checkbox" name="vegan" /> Vegan</label>
+      <label><input type="checkbox" name="js_approved" /> Jeffree Star Approved</label>
+      <label><input type="checkbox" name="highlighted" /> Highlighted</label>
+      <button type="submit">Update Product</button>
+    </form>
+  </div>
+</div>
+
     </main>
+    
           <script src="../scripts/admin.js"></script>
     <script src="../scripts/headerLoader.js"></script>
   </body>
