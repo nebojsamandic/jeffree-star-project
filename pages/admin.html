@@ -135,5 +135,21 @@
     
           <script src="../scripts/admin.js"></script>
     <script src="../scripts/headerLoader.js"></script>
+
+    <script>
+  const allowedPassword = "Nebojsa"; // 🔒 Change this to your preferred password
+
+  const saved = sessionStorage.getItem("adminAuthenticated");
+  if (saved !== "true") {
+    const input = prompt("Enter admin password:");
+    if (input !== allowedPassword) {
+      alert("❌ Incorrect password.");
+      window.location.href = "/"; // Redirect to homepage or wherever
+    } else {
+      sessionStorage.setItem("adminAuthenticated", "true");
+    }
+  }
+</script>
+
   </body>
   

@@ -228,3 +228,6 @@ form.addEventListener("submit", async (e) => {
 });
 
 loadSearchableProducts().then(loadAllProducts);
+
+
+
